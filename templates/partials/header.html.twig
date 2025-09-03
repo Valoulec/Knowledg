@@ -1,0 +1,217 @@
+<header class="main-header">
+  <div class="logo">
+    <button class="menu-toggle">☰</button>
+    <a href="/"><img src="/images/logo.png" alt="Logo"></a>
+  </div>
+  <nav class="menu">
+    <ul>
+      <li>
+        <form action=" {{ path('app_courses') }} " method="GET">
+          <input type="text" name="search" placeholder="Rechercher un cours..." value="{{ app.request.query.get('search') }}" onkeydown="if(event.key === 'Enter'){this.form.submit();}">
+          <img src="/images/icons/search.png" alt="Search">
+        </form>
+      </li>
+
+      <li class="menu-item__explore">
+        <span>
+          Explore
+        </span>
+        <div class="menu-item_explore__dropdown">
+          <ul>
+            <li>
+              <a href="{{ path('app_home') }}">
+                <i class="fa-solid fa-house"></i>
+                <span>Accueil</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('app_themes') }}">
+                <i class="fa-solid fa-list"></i>
+                <span>Thémes</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('app_courses') }}">
+                <i class="fa-solid fa-book"></i>
+                <span>Cours</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <a href="{{ path('app_cart') }}">
+          <i class="fa-solid fa-cart-shopping menu-item" aria-hidden="true"></i>
+        </a>
+      </li>
+      {% if not app.user %}
+        <li>
+          <a href="{{ path('app_login') }}" class="btn-outline">Log in</a>
+        </li>
+        <li>
+          <a href="{{ path('app_register') }}" class="btn">Register</a>
+        </li>
+      {% else %}
+        <li class="menu-item_profile menu-item">
+          <span class="menu-item_profile__avatar">
+            {% if app.user.image is not null %}
+              <img src="{{ asset('uploads/' ~ app.user.image) }}">
+            {% else %}
+              {{ app.user.firstName|slice(0, 1) }} {{ app.user.lastName|slice(0, 1) }}
+            {% endif %}
+          </span>
+
+          <div class="menu-item_profile__dropdown">
+            <ul>
+              <li>
+                <div class="menu-item_dropdown__avatar">
+                  {% if app.user.image is not null %}
+                    <img src="{{ asset('uploads/' ~ app.user.image) }}">
+                  {% else %}
+                    {{ app.user.firstName|slice(0, 1) }} {{ app.user.lastName|slice(0, 1) }}
+                  {% endif %}
+                </div>
+                <div>
+                  <a href="#">Bonjour {{ app.user.firstName }} {{ app.user.lastName }}</a>
+                  <p>{{ app.user.email }}</p>
+                </div>
+              </li>
+              {% if is_granted('ROLE_ADMIN') %}
+                <li>
+                  <i class="fa-solid fa-gauge"></i>
+                  <a href="/admin">Admin</a>
+                </li>
+              {% endif %}
+              <li>
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <a href="{{ path('app_study', {id: app.user.id}) }}">Mon apprentissage</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-graduation-cap"></i>
+                <a href="{{ path('app_certifications') }}">Mes certifications</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-cart-shopping"></i>
+                <a href="{{ path('app_cart') }}">Mon panier</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-user"></i>
+                <a href="{{ path('app_user_data') }}">Modifier mon profil</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <a href="/logout">Déconnexion</a>
+              </li>
+            </ul>
+          </div>
+
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+<!-- Sidebar Menu -->
+  {% if app.user %}
+    <nav class="sidebar-menu">
+      <button class="close-btn">✖</button>
+      <ul class="sidebar-menu__items">
+        <li class="sidebar-menu__item {{ app.user ? 'highlight-user' : '' }}">
+          <a href="{{ path('app_user_data', {id: app.user.id}) }}">
+            <span class="sidebar-menu__user__avatar">
+              {% if app.user.image is not null %}
+                <img src="{{ asset('uploads/' ~ app.user.image) }}">
+              {% else %}
+                {{ app.user.firstName|slice(0, 1) }} {{ app.user.lastName|slice(0, 1) }}
+              {% endif %}
+            </span>
+            <div>
+              <span href="#">{{ app.user.firstName }} {{ app.user.lastName }}</span>
+            </div>
+          </a>
+        </li>
+
+        {% if is_granted('ROLE_ADMIN') %}
+          <li class="sidebar-menu__item admin">
+            <a href="/admin">
+              <i class="fa-solid fa-gauge"></i>
+              <span>Administration</span>
+            </a>
+          </li>
+        {% endif %}
+        <li class="sidebar-menu__item">
+          <a href="#">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Mon apprentissage</span>
+          </a>
+        </li>
+        <li class="sidebar-menu__item">
+          <a href="#">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Mes certifications</span>
+          </a>
+        </li>
+        <li class="sidebar-menu__item user">
+          <a href="#">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Mon panier</span>
+          </a>
+        </li>
+        <li class="sidebar-menu__item">
+          <a href="{{ path('app_themes') }}">
+            <i class="fa-solid fa-list"></i>
+            <span>Thémes</span>
+          </a>
+        </li>
+        <li class="sidebar-menu__item course-item">
+          <a href="{{ path('app_courses') }}">
+            <i class="fa-solid fa-book"></i>
+            <span>Courses</span>
+          </a>
+        </li>
+        <li class="sidebar-menu__item">
+          <a href="/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Déconnexion</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Overlay -->
+    <div class="overlay"></div>
+  {% else %}
+    <nav class="sidebar-menu">
+      <button class="close-btn">✖</button>
+      <ul class="sidebar-menu__items">
+        <li class="sidebar-menu__item">
+          <a href="{{ path('app_themes') }}">
+            <i class="fa-solid fa-list"></i>
+            <span>Thémes</span>
+          </a>
+        </li>
+        <li class="sidebar-menu__item course-item">
+          <a href="#">
+            <i class="fa-solid fa-book"></i>
+            <span>Courses</span>
+          </a>
+        </li>
+
+        <li class="sidebar-menu__item">
+          <a href="{{ path('app_login') }}">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span>Log in</span>
+          </a>
+        </li>
+        <li class="sidebar-menu__item">
+          <a href="{{ path('app_register') }}">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Register</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- Overlay -->
+    <div class="overlay"></div>
+  {% endif %}
+</header>

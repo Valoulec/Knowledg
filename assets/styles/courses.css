@@ -1,0 +1,343 @@
+.courses-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+  background-color: var(--main-bg-color);
+}
+
+.courses-header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 30vh;
+  margin-top: 100px;
+  background-color: var(--secondary-bg-color);
+  padding: 1rem;
+  color: var(--secondary-text-color);
+}
+
+.courses-header__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+
+  & div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 80%;
+    gap: 1rem;
+
+    & h1 {
+      color: var(--btn-hover-dark-color);
+    }
+
+    & p:nth-of-type(1) {
+      color: var(--main-text-color);
+      text-align: justify;
+    }
+
+    & p:nth-of-type(2) {
+      width: fit-content;
+      border-radius: 0.3rem;
+      padding: 0.5rem;
+      background-color: var(--blue-sky);
+      color: var(--btn-color);
+    }
+  }
+
+  & div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    width: 20%;
+
+    & img {
+      width: 100%;
+    }
+  }
+}
+
+.courses-wrapper {
+  display: flex;
+  flex-grow: 1;
+  gap: 1rem;
+  padding: 2rem 0;
+  width: 80%;
+}
+
+.courses-sidebar {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--input-border-color);
+  border-radius: 0.5rem;
+  width: 20%;
+}
+
+.courses-sidebar__header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--input-border-color);
+}
+
+.courses-sidebar__header h2 {
+  color: var(--btn-hover-dark-color);
+  font-size: 1rem;
+}
+
+.courses-sidebar__header i {
+  color: var(--btn-hover-dark-color);
+}
+
+.courses-filter {
+  padding: 1rem;
+}
+
+.courses-filter form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  gap: 1rem;
+}
+
+.courses-filter form h3 {
+  color: var(--btn-hover-dark-color);
+  width: 100%;
+  text-align: start;
+  font-size: 1rem;
+}
+
+.courses-filter form select {
+  width: 100%;
+  font-family: "Nunito Regular";
+  color: var(--tertiary-text-color);
+}
+
+.courses-filter form label {
+  font-family: "Nunito Regular";
+  color: var(--tertiary-text-color);
+}
+
+.courses-filter form a {
+  width: 100%;
+  text-decoration: none;
+}
+
+.courses-filter form button {
+  width: 100%;
+}
+
+.courses-content {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.course-card {
+  display: flex;
+  padding: 1rem 0;
+  gap: 1rem;
+  border-bottom: 1px solid var(--input-border-color);
+}
+
+.course-card:last-child {
+  border-bottom: none;
+}
+
+.course-card:first-child {
+  padding-top: 0;
+}
+
+.course-card__image {
+  width: 300px;
+  height: 200px;
+}
+
+.course-card__image img {
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.course-card__content {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: "Nunito Regular";
+  color: var(--tertiary-text-color);
+}
+
+.course-card__content h3 {
+  color: var(--btn-hover-dark-color);
+}
+
+.course-card__content div {
+  color: var(--main-text-color);
+  font-family: "Nunito Regular";
+  text-align: justify;
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.course-card__content .course-card__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.course-card__content i {
+  color: inherit;
+}
+
+.course-card__actions form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: auto;
+  text-align: center;
+  height: 30px;
+  font-family: "Nunito Regular";
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.course-card__content a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: auto;
+  text-align: center;
+  font-family: "Nunito Regular";
+  height: 30px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .courses-header {
+    height: 25vh;
+  }
+
+  .courses-header__wrapper {
+    width: 100%;
+    padding: 1rem;
+
+    & div:nth-child(1) {
+      width: 100%;
+
+      & h1 {
+        font-size: 1.5rem;
+      }
+
+      & p:nth-of-type(1) {
+        font-size: 0.9rem;
+      }
+
+      & p:nth-of-type(2) {
+        font-size: 0.8rem;
+      }
+    }
+
+    & div:nth-child(2) {
+      display: none;
+    }
+  }
+  .courses-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .courses-sidebar {
+    width: 100%;
+  }
+
+  .courses-content {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (min-width: 0px) and (max-width: 768px) {
+  .courses-header {
+    height: 25vh;
+  }
+
+  .courses-header__wrapper {
+    width: 100%;
+    padding: 1rem;
+
+    & div:nth-child(1) {
+      width: 100%;
+
+      & h1 {
+        font-size: 1.5rem;
+      }
+
+      & p:nth-of-type(1) {
+        font-size: 0.9rem;
+      }
+
+      & p:nth-of-type(2) {
+        font-size: 0.8rem;
+      }
+    }
+
+    & div:nth-child(2) {
+      display: none;
+    }
+  }
+
+  .courses-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .courses-sidebar {
+    width: 100%;
+  }
+
+  .courses-content {
+    width: 100%;
+  }
+
+  .course-card {
+    flex-direction: column;
+  }
+
+  .course-card__image {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .course-card__image img {
+    width: 100%;
+    height: auto;
+  }
+}

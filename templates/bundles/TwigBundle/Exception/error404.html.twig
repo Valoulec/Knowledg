@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}404 - Page not found
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block main %}
+	<main class="error-container">
+		<div class="error-content">
+			<h1>Page not found !</h1>
+			<p>Oups... vous êtes perdu ? La page que vous cherchez n'est pas disponible, vous pouvez toujours retourner à la pages d'accueil et reprendre votre chemin.</p>
+			<a href="{{ path('app_home') }}">Accueil</a>
+		</div>
+		<div class="error-image">
+			<img src="{{ asset('/images/404.jpg') }}" alt="404">
+		</div>
+	</main>
+{% endblock %}
